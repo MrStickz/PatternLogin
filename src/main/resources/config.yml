@@ -1,0 +1,30 @@
+##################################################################################################################################
+######                                                                                                                       #####
+####     ##########       ##########     #############   #############   #############   ##########      ####       ####      ####
+###      ##       ##     ##        ##    ##  ####   ##   ##  ####   ##   ###        ##   ###      ###     ####       ##        ###
+##       ##        ##   ##          ##        ##              ##         ##              ##        ###    ## ##      ##         ##
+##       ##        ##   ##          ##        ##              ##         ###     ##      ###      ###     ##  ##     ##         ##
+##       ##########     ##############        ##              ##         ##########      ##########       ##   ##    ##         ##
+##       ##             ##          ##        ##              ##         ###     ##      ######           ##    ##   ##         ##
+##       ##             ##          ##        ##              ##         ##              ##   ###         ##     ##  ##         ##
+###      ##             ##          ##        ##              ##         ###        ##   ##     ###       ##      ## ##        ###
+####    ####           ####        ####       ##              ##         #############   ##       ###    ####       ####      ####
+#####                                                                                                                        #####
+##################################################################################################################################
+
+# If enabled will spawn the player in a different world. Used to hide their coordinate
+# Players will be teleported back to their location after they login
+# Note: This feature will download an empty void world where players will get tp'd on login
+cords-security:
+  enable: false
+
+  # The world where players will be teleported while logging in
+  world:
+    name: "void_world"
+    x: 0.0
+    y: 0.0
+    z: 0.0
+
+# The player should be kicked from the server on logout
+# Useful if "cords-security" is enabled
+kick-on-logout: true

@@ -1,0 +1,15 @@
+name: PatternLogin
+version: '0.3'
+
+main: me.mrstick.patternLogin.PatternLogin
+api-version: '1.21'
+
+authors: [ mrstick ]
+description: An authentication plugin for offline mode servers
+
+softdepend:
+  - PlaceholderAPI
+
+commands:
+  patternlogin:
+    description: Main command of the plugin PatternLogin

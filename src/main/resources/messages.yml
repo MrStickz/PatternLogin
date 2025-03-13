@@ -1,0 +1,36 @@
+##################################################################################################################################
+######                                                                                                                       #####
+####     ##########       ##########     #############   #############   #############   ##########      ####       ####      ####
+###      ##       ##     ##        ##    ##  ####   ##   ##  ####   ##   ###        ##   ###      ###     ####       ##        ###
+##       ##        ##   ##          ##        ##              ##         ##              ##        ###    ## ##      ##         ##
+##       ##        ##   ##          ##        ##              ##         ###     ##      ###      ###     ##  ##     ##         ##
+##       ##########     ##############        ##              ##         ##########      ##########       ##   ##    ##         ##
+##       ##             ##          ##        ##              ##         ###     ##      ######           ##    ##   ##         ##
+##       ##             ##          ##        ##              ##         ##              ##   ###         ##     ##  ##         ##
+###      ##             ##          ##        ##              ##         ###        ##   ##     ###       ##      ## ##        ###
+####    ####           ####        ####       ##              ##         #############   ##       ###    ####       ####      ####
+#####                                                                                                                        #####
+##################################################################################################################################
+
+prefix: "&6&l(&e🔒&6&l)"
+
+permission-error: "{prefix}&c Only ops can use this"
+
+# Usages for all the commands
+pattern-relogin: "{prefix}&c Incorrect Usage: &f/patternlogin relogin &c<player>"
+pattern-reset: "{prefix}&c Incorrect Usage: &f/patternlogin reset &c<player>"
+
+registered-successfully: "{prefix}&a Successfully registered your account!"
+loggedin-successfully: "{prefix}&a Logged In..."
+
+loggedout-by-admin: "{prefix}&c You have been logged out by an admin. Please relogin"
+loggedout-successfully: "{prefix}&a Successfully logged out"
+loggedout-by-admin-kick-msg: "{prefix}&c You have been logged out by an admin"
+
+pattern-reset-by-admin: "{prefix}&c Your pattern has been reset by an admin"
+pattern-reset-successfully: "{prefix}&a Successfully reset the pattern"
+
+# Messages related to errors
+wrong-pattern: "{prefix}&c Wrong pattern..."
+
+unknown-player: "{prefix}&c Provided player is offline"
