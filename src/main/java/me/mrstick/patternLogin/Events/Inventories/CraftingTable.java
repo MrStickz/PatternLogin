@@ -1,10 +1,15 @@
 package me.mrstick.patternLogin.Events.Inventories;
 
 import me.mrstick.patternLogin.PatternLogin;
+import me.mrstick.patternLogin.Utils.Events.onLoginEvent;
+import me.mrstick.patternLogin.Utils.Events.onRegisterEvent;
 import me.mrstick.patternLogin.Utils.GUIManagers.GUIChecker;
 import me.mrstick.patternLogin.Utils.LoginManagers.Logins;
 import me.mrstick.patternLogin.Utils.LoginManagers.PatternManager;
+import me.mrstick.patternLogin.Utils.LoginManagers.TPM.Tries;
+import me.mrstick.patternLogin.Utils.Strorage.Configurations;
 import me.mrstick.patternLogin.Utils.Strorage.Messages;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -32,32 +37,31 @@ public class CraftingTable implements Listener {
 
         Player player = (Player) e.getView().getPlayer();
         UUID uuid = player.getUniqueId();
-        List<Integer> pattern = getPattern(uuid);
+        List<Integer> pattern = GetPattern(uuid);
 
         // On Register
         if (!PatternManager.isRegistered(uuid)) {
-            PatternManager.Register(uuid, pattern);
 
-            Logins.Login(player);
-            player.sendMessage(Messages.registered_successfully);
-            inv.close();
-
+            onRegisterEvent registerEvent = new onRegisterEvent(player, inv, pattern);
+            Bukkit.getPluginManager().callEvent(registerEvent);
             return;
+
         }
 
         // On Login
         if (PatternManager.Login(uuid, pattern) == 200) {
-            Logins.Login(player);
-            player.sendMessage(Messages.login_successfully);
 
-            ClearPattern(uuid, inv);
-            inv.close();
-
+            onLoginEvent loginEvent = new onLoginEvent(player, inv);
+            Bukkit.getPluginManager().callEvent(loginEvent);
             return;
+
         }
 
         ClearPattern(uuid, inv);
         player.sendMessage(Messages.wrong_pattern);
+        if (Configurations.kick_after_max_tries != 0) {
+            Tries.AddTry(player);
+        }
     }
 
 
@@ -86,6 +90,7 @@ public class CraftingTable implements Listener {
 
             RemovePattern(uuid, slot, inv);
         }
+
     }
 
     @EventHandler
@@ -124,12 +129,6 @@ public class CraftingTable implements Listener {
         return me.mrstick.patternLogin.Inventories.CraftingTable.chosePatternItem.equals(item.getType());
     }
 
-    private static final List<Integer> emptyList = new ArrayList<>();
-
-    public static List<Integer> getPattern(UUID p) {
-        if (!PatternMap.containsKey(p)) return emptyList;
-        return PatternMap.get(p);
-    }
 
     /**
      Setup for editing PatternMap<>
@@ -137,22 +136,27 @@ public class CraftingTable implements Listener {
 
     public static void AddPattern(UUID p, int num, Inventory inv) {
         if (!PatternMap.containsKey(p)) {
-            PatternMap.put(p, emptyList);
+            PatternMap.put(p, new ArrayList<>());
         }
         PatternMap.get(p).add(num);
         inv.setItem(num, new ItemStack(me.mrstick.patternLogin.Inventories.CraftingTable.chosePatternItem));
     }
 
+    public static List<Integer> GetPattern(UUID p) {
+        if (!PatternMap.containsKey(p)) return new ArrayList<>();
+        return PatternMap.get(p);
+    }
+
     public static void RemovePattern(UUID p, int num, Inventory inv) {
         if (!PatternMap.containsKey(p)) {
-            PatternMap.put(p, emptyList);
+            PatternMap.put(p, new ArrayList<>());
         }
         PatternMap.get(p).remove(Integer.valueOf(num));
         inv.setItem(num, new ItemStack(me.mrstick.patternLogin.Inventories.CraftingTable.defaultPatternItem));
     }
 
     public static void ClearPattern(UUID p, Inventory inventory) {
-        List<Integer> pattern = getPattern(p);
+        List<Integer> pattern = GetPattern(p);
         for (int i : pattern) {
             inventory.setItem(i, new ItemStack(me.mrstick.patternLogin.Inventories.CraftingTable.defaultPatternItem));
         }

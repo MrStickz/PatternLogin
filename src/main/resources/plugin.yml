@@ -1,5 +1,5 @@
 name: PatternLogin
-version: '0.3'
+version: '0.4'
 
 main: me.mrstick.patternLogin.PatternLogin
 api-version: '1.21'

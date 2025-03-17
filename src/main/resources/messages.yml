@@ -30,6 +30,8 @@ loggedout-by-admin-kick-msg: "{prefix}&c You have been logged out by an admin"
 pattern-reset-by-admin: "{prefix}&c Your pattern has been reset by an admin"
 pattern-reset-successfully: "{prefix}&a Successfully reset the pattern"
 
+max-tries-reached: "{prefix}&c You've reached max login tries"
+
 # Messages related to errors
 wrong-pattern: "{prefix}&c Wrong pattern..."
 

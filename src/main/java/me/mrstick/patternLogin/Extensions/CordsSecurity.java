@@ -10,6 +10,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -26,13 +27,23 @@ public class CordsSecurity implements Listener {
 
     public static World loadWorld() {
         String securityWorldName = Configurations.security_world_name;
-        World world = Bukkit.getWorld(securityWorldName);
-        if (world == null) {
-            Bukkit.getConsoleSender().sendMessage(PatternLogin.prefix+"§c Couldn't found security world named: "+securityWorldName);
+        File worldFolder = new File(Bukkit.getWorldContainer(), securityWorldName);
+
+        if (!worldFolder.exists()) {
+            Bukkit.getConsoleSender().sendMessage(PatternLogin.prefix + "§c World folder not found: " + securityWorldName);
             return null;
         }
+
+        World world = new WorldCreator(securityWorldName).createWorld();
+        if (world == null) {
+            Bukkit.getConsoleSender().sendMessage(PatternLogin.prefix + "§c Failed to load security world named: " + securityWorldName);
+            return null;
+        }
+
         return world;
     }
+
+
 
     private static final Map<Player, Location> lastLocation = new HashMap<>();
 

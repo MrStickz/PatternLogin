@@ -10,6 +10,8 @@ public class Configurations {
     public static final double security_cord_y = PluginManager.GetConfigReader().getDouble("cords-security.world.y");
     public static final double security_cord_z = PluginManager.GetConfigReader().getDouble("cords-security.world.z");
 
+    public static final int kick_after_max_tries = PluginManager.GetConfigReader().getInt("kick-after-max-tries");
+
     public static final boolean kick_on_logout = PluginManager.GetConfigReader().getBoolean("kick-on-logout");
 
 }

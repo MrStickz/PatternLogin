@@ -2,6 +2,7 @@ package me.mrstick.patternLogin.Utils;
 
 import me.mrstick.patternLogin.Events.onJoin;
 import me.mrstick.patternLogin.Events.onLoggingIn;
+import me.mrstick.patternLogin.Events.onSuccess;
 import me.mrstick.patternLogin.Scripts.DataChanger;
 import me.mrstick.patternLogin.Scripts.DataCreation;
 import me.mrstick.patternLogin.Scripts.JsonWriter;
@@ -53,6 +54,8 @@ public class PluginManager {
         Bukkit.getPluginManager().registerEvents(new me.mrstick.patternLogin.Events.Inventories.CraftingTable(), plugin);
         Bukkit.getPluginManager().registerEvents(new onJoin(), plugin);
         Bukkit.getPluginManager().registerEvents(new onLoggingIn(), plugin);
+
+        Bukkit.getPluginManager().registerEvents(new onSuccess(), plugin);
 
     }
 

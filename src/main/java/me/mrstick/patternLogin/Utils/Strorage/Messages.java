@@ -25,4 +25,6 @@ public class Messages {
 
     public static String pswd_reset_by_admin = PluginManager.GetMessageChanger().ColorGrade("pattern-reset-by-admin");
     public static String pswd_reset_success = PluginManager.GetMessageChanger().ColorGrade("pattern-reset-successfully");
+
+    public static String max_tries_reached = PluginManager.GetMessageChanger().ColorGrade("max-tries-reached");
 }

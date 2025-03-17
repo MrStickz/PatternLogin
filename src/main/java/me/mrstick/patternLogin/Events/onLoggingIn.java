@@ -15,7 +15,7 @@ public class onLoggingIn implements Listener {
         if (Logins.isLoggedIn(p.getUniqueId())) return;
         e.setCancelled(true);
     }
-    
+
     @EventHandler
     public void onDamage(EntityDamageEvent e) {
         if (!(e.getEntity() instanceof Player p)) return;

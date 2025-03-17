@@ -12,6 +12,10 @@
 #####                                                                                                                        #####
 ##################################################################################################################################
 
+# After how much wrong patterns the player should be kicked from the server
+# Set it to "0" for infinite tries
+kick-after-max-tries: 2
+
 # If enabled will spawn the player in a different world. Used to hide their coordinate
 # Players will be teleported back to their location after they login
 # Note: This feature will download an empty void world where players will get tp'd on login
