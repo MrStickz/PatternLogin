@@ -16,6 +16,10 @@
 # Set it to "0" for infinite tries
 kick-after-max-tries: 2
 
+# The player should be kicked from the server on logout
+# Useful if "cords-security" is enabled
+kick-on-logout: true
+
 # If enabled will spawn the player in a different world. Used to hide their coordinate
 # Players will be teleported back to their location after they login
 # Note: This feature will download an empty void world where players will get tp'd on login
@@ -29,6 +33,13 @@ cords-security:
     y: 0.0
     z: 0.0
 
-# The player should be kicked from the server on logout
-# Useful if "cords-security" is enabled
-kick-on-logout: true
+# Sessions store players' IPs, so when a player logs in and leaves, they can rejoin without entering the pattern again
+# It's recommended to enable this to enhance player's experience
+sessions:
+  enable: true
+
+  # Time of a player's session. After this time is passed the player will have to enter the pattern again
+  # Example: If notch leaves the server at 10:10am and they rejoin under their session time, they will not have enter the pattern
+  # But if this time is passed notch will have to enter their pattern
+  # Note: {session-time} is in seconds. Default is 300 seconds (5 minutes)
+  session-time: 300

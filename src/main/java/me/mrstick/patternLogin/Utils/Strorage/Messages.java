@@ -18,6 +18,7 @@ public class Messages {
 
     public static String registered_successfully = PluginManager.GetMessageChanger().ColorGrade("registered-successfully");
     public static String login_successfully = PluginManager.GetMessageChanger().ColorGrade("loggedin-successfully");
+    public static String loggedin_from_session = PluginManager.GetMessageChanger().ColorGrade("loggedin-from-session");
 
     public static String logged_out_by_admin = PluginManager.GetMessageChanger().ColorGrade("loggedout-by-admin");
     public static String logged_out_success = PluginManager.GetMessageChanger().ColorGrade("loggedout-successfully");

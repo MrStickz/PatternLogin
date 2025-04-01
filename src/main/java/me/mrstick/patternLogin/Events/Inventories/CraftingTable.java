@@ -8,6 +8,7 @@ import me.mrstick.patternLogin.Utils.LoginManagers.Logins;
 import me.mrstick.patternLogin.Utils.LoginManagers.PatternManager;
 import me.mrstick.patternLogin.Utils.LoginManagers.TPM.Tries;
 import me.mrstick.patternLogin.Utils.Strorage.Configurations;
+import me.mrstick.patternLogin.Utils.Strorage.GUIConfigurations;
 import me.mrstick.patternLogin.Utils.Strorage.Messages;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -59,6 +60,11 @@ public class CraftingTable implements Listener {
 
         ClearPattern(uuid, inv);
         player.sendMessage(Messages.wrong_pattern);
+
+        if (GUIConfigurations.is_sound_enabled) {
+            player.playSound(player.getLocation(), GUIConfigurations.on_wrong, 1.0f, 1.0f);
+        }
+
         if (Configurations.kick_after_max_tries != 0) {
             Tries.AddTry(player);
         }
@@ -77,6 +83,7 @@ public class CraftingTable implements Listener {
         UUID uuid = player.getUniqueId();
         int slot = e.getSlot();
 
+
         // Default block
         if (isBlock(block)) {
             e.setCancelled(true);
@@ -89,6 +96,10 @@ public class CraftingTable implements Listener {
             e.setCancelled(true);
 
             RemovePattern(uuid, slot, inv);
+        }
+
+        if (GUIConfigurations.is_sound_enabled) {
+            player.playSound(player.getLocation(), GUIConfigurations.on_select, 1.0f, 1.0f);
         }
 
     }
@@ -107,6 +118,7 @@ public class CraftingTable implements Listener {
             }.runTaskLater(PatternLogin.instance(), 1L);
         }
     }
+
 
     /**
      Checkers
@@ -139,7 +151,10 @@ public class CraftingTable implements Listener {
             PatternMap.put(p, new ArrayList<>());
         }
         PatternMap.get(p).add(num);
-        inv.setItem(num, new ItemStack(me.mrstick.patternLogin.Inventories.CraftingTable.chosePatternItem));
+        int numberth = GetPattern(p).size();
+        ItemStack item = new ItemStack(me.mrstick.patternLogin.Inventories.CraftingTable.chosePatternItem);
+        item.setAmount(numberth);
+        inv.setItem(num, item);
     }
 
     public static List<Integer> GetPattern(UUID p) {

@@ -58,6 +58,8 @@ public class DataCreation {
         if (!craftingGUI.exists()) {
             createFile(craftingGUI);
             copyDefaultConfig(craftingGUI, "GUIs/Patterns.yml");
+        } else {
+            updateConfig(craftingGUI, "GUIs/Patterns.yml");
         }
     }
 

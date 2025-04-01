@@ -6,6 +6,7 @@ import me.mrstick.patternLogin.Utils.LoginManagers.Logins;
 import me.mrstick.patternLogin.Utils.LoginManagers.PatternManager;
 import me.mrstick.patternLogin.Utils.LoginManagers.TPM.Tries;
 import me.mrstick.patternLogin.Utils.Strorage.Configurations;
+import me.mrstick.patternLogin.Utils.Strorage.GUIConfigurations;
 import me.mrstick.patternLogin.Utils.Strorage.Messages;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -28,6 +29,10 @@ public class onSuccess implements Listener {
         Logins.Login(player);
         player.sendMessage(Messages.login_successfully);
         ClearPattern(uuid, inv);
+
+        if (GUIConfigurations.is_sound_enabled) {
+            player.playSound(player.getLocation(), GUIConfigurations.on_success, 1.0f, 1.0f);
+        }
         inv.close();
 
         if (Configurations.kick_after_max_tries != 0) {
@@ -46,6 +51,10 @@ public class onSuccess implements Listener {
 
         Logins.Login(player);
         player.sendMessage(Messages.registered_successfully);
+
+        if (GUIConfigurations.is_sound_enabled) {
+            player.playSound(player.getLocation(), GUIConfigurations.on_success, 1.0f, 1.0f);
+        }
         inv.close();
 
     }

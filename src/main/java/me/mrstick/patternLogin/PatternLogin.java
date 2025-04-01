@@ -12,7 +12,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 public final class PatternLogin extends JavaPlugin {
 
     public static String prefix = "§6[§ePatternLogin§6]";
-    public static double version = 0.4;
+    public static double version = 0.5;
     private static JavaPlugin plugin;
 
 

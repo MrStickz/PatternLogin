@@ -2,7 +2,6 @@ package me.mrstick.patternLogin.Inventories;
 
 import me.mrstick.patternLogin.Scripts.SCs.Materials;
 import me.mrstick.patternLogin.Utils.GUIManagers.GUIHolders;
-import me.mrstick.patternLogin.Utils.MessageManager.MessagesManager;
 import me.mrstick.patternLogin.Utils.PluginManager;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -35,7 +34,7 @@ public class CraftingTable {
         }
     }
 
-    private static ItemStack getStatusItem() {
+    public static ItemStack getStatusItem() {
         ItemMeta meta = submitterItem.getItemMeta();
         meta.setDisplayName("§cEnter your Pattern");
         meta.setLore(List.of("§7Click to submit!"));

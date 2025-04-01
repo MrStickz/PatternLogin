@@ -1,6 +1,7 @@
 package me.mrstick.patternLogin.Utils;
 
 import me.mrstick.patternLogin.Extensions.CordsSecurity;
+import me.mrstick.patternLogin.Extensions.Sessions;
 import me.mrstick.patternLogin.Inventories.CraftingTable;
 import me.mrstick.patternLogin.Utils.Strorage.Configurations;
 import org.bukkit.Bukkit;
@@ -12,7 +13,7 @@ public class ExtensionManager {
 
     public static void Register(JavaPlugin plugin) {
 
-        // Coordinates Security
+        // Extension: Coordinates Security
         if (Configurations.isCordsSecurity_enabled) {
             CordsSecurity cordsSecurityExtension = new CordsSecurity();
             Bukkit.getPluginManager().registerEvents(cordsSecurityExtension, plugin);
@@ -20,6 +21,11 @@ public class ExtensionManager {
             if (CordsSecurity.world == null) {
                 HandlerList.unregisterAll(cordsSecurityExtension);
             }
+        }
+
+        // Extension: Sessions
+        if (Configurations.isSession_enabled) {
+            Bukkit.getPluginManager().registerEvents(new Sessions(), plugin);
         }
 
 

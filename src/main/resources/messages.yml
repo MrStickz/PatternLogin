@@ -22,6 +22,7 @@ pattern-reset: "{prefix}&c Incorrect Usage: &f/patternlogin reset &c<player>"
 
 registered-successfully: "{prefix}&a Successfully registered your account!"
 loggedin-successfully: "{prefix}&a Logged In..."
+loggedin-from-session: "{prefix}&a Logged In from previous session..."
 
 loggedout-by-admin: "{prefix}&c You have been logged out by an admin. Please relogin"
 loggedout-successfully: "{prefix}&a Successfully logged out"

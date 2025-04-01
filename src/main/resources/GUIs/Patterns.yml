@@ -15,6 +15,18 @@
 GUI:
   title: "&7Pattern"
 
+  # Sounds that are triggered on selecting pattern, on wrong pattern and on correct pattern
+  # You can find all the sounds that can be used from here https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Sound.html#AMBIENT_WARPED_FOREST_MOOD
+  sounds:
+    enable: true
+
+    # Sound on selecting pattern
+    on-select: BLOCK_COMPARATOR_CLICK
+    # Sound on correct pattern
+    on-success: ENTITY_EXPERIENCE_ORB_PICKUP
+    # Sound on wrong pattern
+    on-wrong: ENTITY_VILLAGER_NO
+
   status:
     item: NAME_TAG
 

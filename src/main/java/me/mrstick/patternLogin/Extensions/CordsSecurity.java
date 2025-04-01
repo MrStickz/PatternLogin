@@ -30,7 +30,7 @@ public class CordsSecurity implements Listener {
         File worldFolder = new File(Bukkit.getWorldContainer(), securityWorldName);
 
         if (!worldFolder.exists()) {
-            Bukkit.getConsoleSender().sendMessage(PatternLogin.prefix + "§c World folder not found: " + securityWorldName);
+            Bukkit.getConsoleSender().sendMessage(PatternLogin.prefix + "§cSecurity World folder not found: " + securityWorldName);
             return null;
         }
 
@@ -67,6 +67,8 @@ public class CordsSecurity implements Listener {
     @EventHandler
     public void onSecurityJoin(PlayerJoinEvent e) {
         Player p = e.getPlayer();
+        if (Logins.isLoggedIn(p.getUniqueId())) return;
+
         Location loc = p.getLocation();
         p.teleport(CordsSecurity.GetSecurityWorldLocation());
         Store(p, loc);
