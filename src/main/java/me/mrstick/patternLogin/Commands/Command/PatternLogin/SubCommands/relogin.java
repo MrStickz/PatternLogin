@@ -4,6 +4,7 @@ import me.mrstick.patternLogin.Commands.CommandInterface;
 import me.mrstick.patternLogin.Inventories.CraftingTable;
 import me.mrstick.patternLogin.Utils.LoginManagers.Logins;
 import me.mrstick.patternLogin.Utils.Strorage.Configurations;
+import me.mrstick.patternLogin.Utils.Strorage.GUIConfigurations;
 import me.mrstick.patternLogin.Utils.Strorage.Messages;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
@@ -40,7 +41,7 @@ public class relogin implements CommandInterface {
         }
 
         Logins.UnLogin(player.getUniqueId());
-        player.openInventory(new CraftingTable().craftingTable);
+        player.openInventory(new CraftingTable(GUIConfigurations.main_title).craftingTable);
         player.sendMessage(Messages.logged_out_by_admin);
 
         sender.sendMessage(Messages.logged_out_success);

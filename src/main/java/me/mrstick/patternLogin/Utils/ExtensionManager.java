@@ -4,6 +4,7 @@ import me.mrstick.patternLogin.Extensions.CordsSecurity;
 import me.mrstick.patternLogin.Extensions.Sessions;
 import me.mrstick.patternLogin.Inventories.CraftingTable;
 import me.mrstick.patternLogin.Utils.Strorage.Configurations;
+import me.mrstick.patternLogin.Utils.Strorage.GUIConfigurations;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.HandlerList;
@@ -30,7 +31,7 @@ public class ExtensionManager {
 
 
         for (Player p : Bukkit.getOnlinePlayers()) {
-            p.openInventory(new CraftingTable().craftingTable);
+            p.openInventory(new CraftingTable(GUIConfigurations.main_title).craftingTable);
         }
     }
 

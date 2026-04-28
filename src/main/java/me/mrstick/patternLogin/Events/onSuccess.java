@@ -1,5 +1,7 @@
 package me.mrstick.patternLogin.Events;
 
+import me.mrstick.patternLogin.Commands.Command.PatternLogin.SubCommands.change;
+import me.mrstick.patternLogin.Inventories.CraftingTable;
 import me.mrstick.patternLogin.Utils.Events.onLoginEvent;
 import me.mrstick.patternLogin.Utils.Events.onRegisterEvent;
 import me.mrstick.patternLogin.Utils.LoginManagers.Logins;
@@ -8,6 +10,7 @@ import me.mrstick.patternLogin.Utils.LoginManagers.TPM.Tries;
 import me.mrstick.patternLogin.Utils.Strorage.Configurations;
 import me.mrstick.patternLogin.Utils.Strorage.GUIConfigurations;
 import me.mrstick.patternLogin.Utils.Strorage.Messages;
+import me.mrstick.patternLogin.Utils.Strorage.Sounds;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -26,18 +29,30 @@ public class onSuccess implements Listener {
         UUID uuid = player.getUniqueId();
         Inventory inv = e.getInventory();
 
+
+        // Instead of logging in, we re-open the GUI & Un-register the player entirely
+        if (change.changePass_queue.contains(uuid) && Logins.isLoggedIn(uuid)) {
+            ClearPattern(uuid, inv);
+            inv.close();
+
+
+            Logins.UnLogin(uuid);
+            PatternManager.UnRegister(uuid);
+
+            Sounds.playPswdChangeSound(player);
+            player.openInventory(new CraftingTable(GUIConfigurations.new_title).craftingTable);
+
+            return;
+        }
+
         Logins.Login(player);
         player.sendMessage(Messages.login_successfully);
         ClearPattern(uuid, inv);
+        ClearMaxTries(uuid);
 
-        if (GUIConfigurations.is_sound_enabled) {
-            player.playSound(player.getLocation(), GUIConfigurations.on_success, 1.0f, 1.0f);
-        }
+        Sounds.playSuccessSound(player);
         inv.close();
 
-        if (Configurations.kick_after_max_tries != 0) {
-            Tries.ClearTry(uuid);
-        }
     }
 
     @EventHandler
@@ -50,13 +65,26 @@ public class onSuccess implements Listener {
         PatternManager.Register(uuid, e.getPattern());
 
         Logins.Login(player);
-        player.sendMessage(Messages.registered_successfully);
 
-        if (GUIConfigurations.is_sound_enabled) {
-            player.playSound(player.getLocation(), GUIConfigurations.on_success, 1.0f, 1.0f);
+        if (change.changePass_queue.contains(uuid)) {
+            player.sendMessage(Messages.pattern_changed);
+            change.changePass_queue.remove(uuid);
+        } else {
+            player.sendMessage(Messages.registered_successfully);
         }
+
+        ClearPattern(uuid, inv);
+        ClearMaxTries(uuid);
+
+        Sounds.playSuccessSound(player);
         inv.close();
 
+    }
+
+    private void ClearMaxTries(UUID uuid) {
+        if (Configurations.kick_after_max_tries != 0) {
+            Tries.ClearTry(uuid);
+        }
     }
 
 }

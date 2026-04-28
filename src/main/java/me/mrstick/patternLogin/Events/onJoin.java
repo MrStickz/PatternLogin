@@ -4,6 +4,7 @@ import me.mrstick.patternLogin.Extensions.Sessions;
 import me.mrstick.patternLogin.Inventories.CraftingTable;
 import me.mrstick.patternLogin.Utils.LoginManagers.Logins;
 import me.mrstick.patternLogin.Utils.Strorage.Configurations;
+import me.mrstick.patternLogin.Utils.Strorage.GUIConfigurations;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -19,7 +20,7 @@ public class onJoin implements Listener {
         if (Logins.isLoggedIn(p.getUniqueId())) return;
         if (Configurations.isSession_enabled && Sessions.isSessionActive(p)) return; /// CHANGED
 
-        p.openInventory(new CraftingTable().craftingTable);
+        p.openInventory(new CraftingTable(GUIConfigurations.main_title).craftingTable);
     }
 
     @EventHandler

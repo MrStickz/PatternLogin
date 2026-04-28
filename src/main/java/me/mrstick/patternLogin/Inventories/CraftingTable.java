@@ -3,6 +3,7 @@ package me.mrstick.patternLogin.Inventories;
 import me.mrstick.patternLogin.Scripts.SCs.Materials;
 import me.mrstick.patternLogin.Utils.GUIManagers.GUIHolders;
 import me.mrstick.patternLogin.Utils.PluginManager;
+import me.mrstick.patternLogin.Utils.Strorage.GUIConfigurations;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.event.inventory.InventoryType;
@@ -16,7 +17,6 @@ public class CraftingTable {
 
     public Inventory craftingTable;
 
-    private static final String title = PluginManager.PatternGUIChanger.SimpleColorGrade("GUI.title");
 
     private static final ItemStack submitterItem = new ItemStack(Materials.GetMaterial(PluginManager.PatternGUIConfig.getString("GUI.status.item")));
     public static final int submitterId = 7987;
@@ -24,7 +24,7 @@ public class CraftingTable {
     public static final Material defaultPatternItem = Material.BLACK_STAINED_GLASS_PANE;
     public static final Material chosePatternItem = Material.LIME_STAINED_GLASS_PANE;
 
-    public CraftingTable() {
+    public CraftingTable(String title) {
         craftingTable = Bukkit.createInventory(new GUIHolders("pattern_inventory"), InventoryType.WORKBENCH, title);
 
         craftingTable.setItem(0, getStatusItem());
@@ -36,8 +36,10 @@ public class CraftingTable {
 
     public static ItemStack getStatusItem() {
         ItemMeta meta = submitterItem.getItemMeta();
-        meta.setDisplayName("§cEnter your Pattern");
-        meta.setLore(List.of("§7Click to submit!"));
+
+        meta.setDisplayName(GUIConfigurations.default_submit_name);
+        meta.setLore(GUIConfigurations.default_submit_lore);
+
         meta.setCustomModelData(submitterId);
         submitterItem.setItemMeta(meta);
         return submitterItem;

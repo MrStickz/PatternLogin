@@ -1,6 +1,5 @@
 package me.mrstick.patternLogin.Extensions;
 
-import me.mrstick.patternLogin.PatternLogin;
 import me.mrstick.patternLogin.Utils.LoginManagers.Logins;
 import me.mrstick.patternLogin.Utils.Strorage.Configurations;
 import org.bukkit.*;
@@ -30,13 +29,13 @@ public class CordsSecurity implements Listener {
         File worldFolder = new File(Bukkit.getWorldContainer(), securityWorldName);
 
         if (!worldFolder.exists()) {
-            Bukkit.getConsoleSender().sendMessage(PatternLogin.prefix + "§cSecurity World folder not found: " + securityWorldName);
+            Bukkit.getConsoleSender().sendMessage(Configurations.prefix + "§cSecurity World folder not found: " + securityWorldName);
             return null;
         }
 
         World world = new WorldCreator(securityWorldName).createWorld();
         if (world == null) {
-            Bukkit.getConsoleSender().sendMessage(PatternLogin.prefix + "§c Failed to load security world named: " + securityWorldName);
+            Bukkit.getConsoleSender().sendMessage(Configurations.prefix + "§c Failed to load security world named: " + securityWorldName);
             return null;
         }
 

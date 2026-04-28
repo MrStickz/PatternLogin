@@ -31,7 +31,6 @@ public class Sessions implements Listener {
         new BukkitRunnable() {
             @Override
             public void run() {
-                System.out.println(sessions);
                 SessionData session = sessions.get(uuid);
                 if (session == null) {
                     cancel();

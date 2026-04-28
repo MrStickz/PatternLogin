@@ -1,5 +1,6 @@
 package me.mrstick.patternLogin.Commands.Command.PatternLogin;
 
+import me.mrstick.patternLogin.Commands.Command.PatternLogin.SubCommands.change;
 import me.mrstick.patternLogin.Commands.Command.PatternLogin.SubCommands.relogin;
 import me.mrstick.patternLogin.Commands.Command.PatternLogin.SubCommands.reset;
 import me.mrstick.patternLogin.Commands.CommandHandler;
@@ -13,6 +14,8 @@ public class Handler extends CommandHandler {
     public Handler() {
         register("relogin", new relogin());
         register("reset", new reset());
+
+        register("change", new change());
     }
 
     @Override

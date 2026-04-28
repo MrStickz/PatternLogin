@@ -31,7 +31,6 @@ public class PatternManager {
     }
 
 
-
     // SEP
 
     public static boolean isRegistered(UUID uuid) {

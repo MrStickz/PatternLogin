@@ -4,6 +4,18 @@ import me.mrstick.patternLogin.Utils.PluginManager;
 
 public class Configurations {
 
+    /// Plugin
+    public static double version = 0.6;
+
+    public static String prefix = "§6[§ePatternLogin§6]";
+    public static final String prefix_big = """
+                    \n§6[§ePatternLogin§6]: §7====================================
+                    §6[§ePatternLogin§6]: §7|    §ePatternLogin§7                  |
+                    §6[§ePatternLogin§6]: §7|    §7Currently running on v"""
+                                + version + "     |" + """
+                    \n§6[§ePatternLogin§6]: §7====================================
+                    """;
+
     public static final int kick_after_max_tries = PluginManager.GetConfigReader().getInt("kick-after-max-tries");
     public static final boolean kick_on_logout = PluginManager.GetConfigReader().getBoolean("kick-on-logout");
 

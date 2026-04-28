@@ -10,6 +10,7 @@ import me.mrstick.patternLogin.Utils.LoginManagers.TPM.Tries;
 import me.mrstick.patternLogin.Utils.Strorage.Configurations;
 import me.mrstick.patternLogin.Utils.Strorage.GUIConfigurations;
 import me.mrstick.patternLogin.Utils.Strorage.Messages;
+import me.mrstick.patternLogin.Utils.Strorage.Sounds;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -18,6 +19,7 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.*;
@@ -40,6 +42,11 @@ public class CraftingTable implements Listener {
         UUID uuid = player.getUniqueId();
         List<Integer> pattern = GetPattern(uuid);
 
+        if (pattern.isEmpty()) {
+            Sounds.playNegativeSound(player);
+            return;
+        }
+
         // On Register
         if (!PatternManager.isRegistered(uuid)) {
 
@@ -61,9 +68,8 @@ public class CraftingTable implements Listener {
         ClearPattern(uuid, inv);
         player.sendMessage(Messages.wrong_pattern);
 
-        if (GUIConfigurations.is_sound_enabled) {
-            player.playSound(player.getLocation(), GUIConfigurations.on_wrong, 1.0f, 1.0f);
-        }
+        Sounds.playNegativeSound(player);
+        submitterWrong(submitter);
 
         if (Configurations.kick_after_max_tries != 0) {
             Tries.AddTry(player);
@@ -98,10 +104,7 @@ public class CraftingTable implements Listener {
             RemovePattern(uuid, slot, inv);
         }
 
-        if (GUIConfigurations.is_sound_enabled) {
-            player.playSound(player.getLocation(), GUIConfigurations.on_select, 1.0f, 1.0f);
-        }
-
+        Sounds.playClickSound(player);
     }
 
     @EventHandler
@@ -178,6 +181,16 @@ public class CraftingTable implements Listener {
 
         if (!PatternMap.containsKey(p)) return;
         PatternMap.get(p).clear();
+    }
+
+
+    public static void submitterWrong(ItemStack submitter) {
+        ItemMeta meta = submitter.getItemMeta();
+
+        meta.setDisplayName(GUIConfigurations.wrong_submit_name);
+        meta.setLore(GUIConfigurations.wrong_submit_lore);
+
+        submitter.setItemMeta(meta);
     }
 
 }

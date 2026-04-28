@@ -3,6 +3,7 @@ package me.mrstick.patternLogin.Utils.APIs.Placeholders;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import me.mrstick.patternLogin.PatternLogin;
 import me.mrstick.patternLogin.Utils.LoginManagers.PatternManager;
+import me.mrstick.patternLogin.Utils.Strorage.Configurations;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
@@ -23,7 +24,7 @@ public class PLPlaceholders extends PlaceholderExpansion {
     @Override
     @NotNull
     public String getVersion() {
-        return String.valueOf(PatternLogin.version);
+        return String.valueOf(Configurations.version);
     }
 
 

@@ -13,10 +13,12 @@
 ##################################################################################################################################
 
 GUI:
-  title: "&7Pattern"
+  titles:
+    default: "&7Pattern"
+    on_new: "&7New Pattern"
 
   # Sounds that are triggered on selecting pattern, on wrong pattern and on correct pattern
-  # You can find all the sounds that can be used from here https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Sound.html#AMBIENT_WARPED_FOREST_MOOD
+  # You can find all the sounds that can be used from here https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Sound.html
   sounds:
     enable: true
 
@@ -26,8 +28,18 @@ GUI:
     on-success: ENTITY_EXPERIENCE_ORB_PICKUP
     # Sound on wrong pattern
     on-wrong: ENTITY_VILLAGER_NO
+    # Sound on password changed
+    on-change: BLOCK_NOTE_BLOCK_HAT
 
   status:
     item: NAME_TAG
 
+    default:
+      name: "&eEnter your pattern"
+      lore:
+        - "&7Click to submit!..."
 
+    wrong:
+      name: "&c&l✘&c Wrong pattern, try again"
+      lore:
+        - "&7Click to submit"

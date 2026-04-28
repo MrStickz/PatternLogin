@@ -15,6 +15,7 @@
 prefix: "&6&l(&e🔒&6&l)"
 
 permission-error: "{prefix}&c Only ops can use this"
+player-only-command: "{prefix}&c Only players can use this!"
 
 # Usages for all the commands
 pattern-relogin: "{prefix}&c Incorrect Usage: &f/patternlogin relogin &c<player>"
@@ -32,6 +33,8 @@ pattern-reset-by-admin: "{prefix}&c Your pattern has been reset by an admin"
 pattern-reset-successfully: "{prefix}&a Successfully reset the pattern"
 
 max-tries-reached: "{prefix}&c You've reached max login tries"
+
+pattern-changed: "{prefix}&a Pattern password changed!"
 
 # Messages related to errors
 wrong-pattern: "{prefix}&c Wrong pattern..."

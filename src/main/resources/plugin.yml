@@ -1,5 +1,5 @@
 name: PatternLogin
-version: '0.5'
+version: '0.6'
 
 main: me.mrstick.patternLogin.PatternLogin
 api-version: '1.21'
@@ -13,3 +13,9 @@ softdepend:
 commands:
   patternlogin:
     description: Main command of the plugin PatternLogin
+    aliases: ["plogin"]
+
+
+permissions:
+  patternlogin.change_pass:
+    description: Access to change your pattern

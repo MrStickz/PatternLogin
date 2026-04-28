@@ -5,6 +5,7 @@ import me.mrstick.patternLogin.Utils.PluginManager;
 public class Messages {
 
     public static String permission_error = PluginManager.GetMessageChanger().ColorGrade("permission-error");
+    public static String player_only_command = PluginManager.GetMessageChanger().ColorGrade("player-only-command");
 
     // Usages
     public static String pattern_relogin_usage = PluginManager.GetMessageChanger().ColorGrade("pattern-relogin");
@@ -28,4 +29,6 @@ public class Messages {
     public static String pswd_reset_success = PluginManager.GetMessageChanger().ColorGrade("pattern-reset-successfully");
 
     public static String max_tries_reached = PluginManager.GetMessageChanger().ColorGrade("max-tries-reached");
+
+    public static String pattern_changed = PluginManager.GetMessageChanger().ColorGrade("pattern-changed");
 }

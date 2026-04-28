@@ -4,6 +4,7 @@ import me.mrstick.patternLogin.Commands.CommandInterface;
 import me.mrstick.patternLogin.Inventories.CraftingTable;
 import me.mrstick.patternLogin.Utils.LoginManagers.Logins;
 import me.mrstick.patternLogin.Utils.LoginManagers.PatternManager;
+import me.mrstick.patternLogin.Utils.Strorage.GUIConfigurations;
 import me.mrstick.patternLogin.Utils.Strorage.Messages;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
@@ -35,7 +36,7 @@ public class reset implements CommandInterface {
 
         Logins.UnLogin(player.getUniqueId());
         PatternManager.UnRegister(player.getUniqueId());
-        player.openInventory(new CraftingTable().craftingTable);
+        player.openInventory(new CraftingTable(GUIConfigurations.new_title).craftingTable);
 
         player.sendMessage(Messages.pswd_reset_by_admin);
         sender.sendMessage(Messages.pswd_reset_success);

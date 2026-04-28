@@ -14,8 +14,8 @@ import org.bukkit.plugin.java.JavaPlugin;
 import java.io.File;
 
 public class PluginManager {
-    
-    public static String folder = DataCreation.dataFolder;
+
+    public static String folder = "PatternLogin";
 
     private static FileConfiguration config = null;
     private static FileConfiguration message = null;
@@ -32,7 +32,7 @@ public class PluginManager {
         config = YamlConfiguration.loadConfiguration(new File("plugins/"+folder+"/config.yml"));
         message = YamlConfiguration.loadConfiguration(new File("plugins/"+folder+"/messages.yml"));
 
-        PatternGUIConfig = YamlConfiguration.loadConfiguration(new File("plugins/"+folder+"/GUIs/PatternGUI.yml"));
+        PatternGUIConfig = YamlConfiguration.loadConfiguration(new File("plugins/"+folder+"/GUIs/Patterns.yml"));
         PatternGUIChanger = new DataChanger(PatternGUIConfig);
 
         ConfigChanger = new DataChanger(config);
